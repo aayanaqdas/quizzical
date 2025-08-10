@@ -1,0 +1,168 @@
+:root {
+  --bg: #f5f7fb;
+  --blue-text: #293264;
+  --blue-border: #4d5b9e;
+  --blue-buttons-bg: #293264;
+  --selected-answers-bg: #d6dbf5;
+  --correct-answers-bg: #94d7a2;
+  --wrong-answers-bg: #f8bcbc;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg);
+  font-family: Karla, sans-serif;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+main .shape-top {
+  position: absolute;
+  max-width: 100%;
+  top: 0;
+  right: 0;
+  z-index: -1;
+}
+
+main .shape-bottom {
+  position: absolute;
+  max-width: 100%;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.start-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  color: var(--blue-text);
+}
+
+.start-page h1 {
+  font-weight: 700;
+  font-size: 2rem;
+}
+
+.start-page p {
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+.start-page button {
+  color: #f5f7fb;
+  background-color: var(--blue-buttons-bg);
+  margin-top: 20px;
+  width: 12rem;
+  height: 3rem;
+  border-radius: 15px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 1rem;
+  text-align: center;
+}
+
+/* ----- Questions page ----- */
+.quiz-container {
+  width: 100%;
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.question-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  gap: 20px;
+  color: var(--blue-text);
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #dbdef0;
+}
+.question-text {
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+
+.radio-button-group {
+  display: flex;
+  gap: 10px;
+}
+
+/* Hide the native radio input */
+input[type="radio"] {
+  -webkit-appearance: none; /* For WebKit browsers */
+  appearance: none; /* Standard property */
+  display: none; /* Hide the input visually */
+}
+
+/* Style the labels to look like buttons */
+.radio-button-group label {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 8px;
+  border: 0.79px solid var(--blue-border);
+  background: transparent;
+  font-weight: 500;
+  font-size: 0.8rem;
+  text-align: center;
+  cursor: pointer;
+}
+
+/* Style for the checked state */
+input[type="radio"]:checked + label {
+  background-color: var(--selected-answers-bg);
+  color: var(--blue-text);
+  border-color: var(--selected-answers-bg);
+}
+
+/* Optional: Hover effect */
+.radio-button-group label:hover {
+  background-color: var(--selected-answers-bg);
+  color: var(--blue-text);
+  border-color: var(--selected-answers-bg);
+}
+
+.quiz-result-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.quiz-result-container h3 {
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: var(--blue-text);
+}
+
+.quiz-result-container button {
+  color: #f5f7fb;
+  background-color: var(--blue-buttons-bg);
+  width: 115px;
+  height: 35px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.8rem;
+  text-align: center;
+  margin-top: 30px;
+}
