@@ -156,6 +156,12 @@ main .shape-bottom {
   justify-content: center;
 }
 
+.quiz-loading {
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: var(--blue-text);
+}
+
 .quiz-form .no-results {
   width: 100%;
   display: flex;

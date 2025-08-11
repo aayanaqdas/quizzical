@@ -21,7 +21,6 @@ export default function App() {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         setData(data.results);
-        console.log(data);
       } catch (error) {
         console.log(error);
       }
@@ -77,7 +76,6 @@ export default function App() {
     };
     setTriviaOptions(options);
     setIsStarted(true);
-    console.log(options);
   }
 
   return (
