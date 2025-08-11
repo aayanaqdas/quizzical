@@ -1,92 +1,47 @@
-export default function QuestionsPage() {
+import { decode } from "html-entities";
+import { nanoid } from "nanoid";
+
+export default function QuestionsPage(props) {
   const isGameOver = false;
+  console.log(props.data);
+
+  function shuffleAnswers(question) {
+    const answers = [...question.incorrect_answers, question.correct_answer];
+    let i = answers.length,
+      j,
+      temp;
+    while (--i > 0) {
+      j = Math.floor(Math.random() * (i + 1));
+      temp = answers[j];
+      answers[j] = answers[i];
+      answers[i] = temp;
+    }
+    return answers;
+  }
+
+  const quizElements = props.data.map((question) => {
+    const questionId = nanoid();
+    const shuffledAnswers = shuffleAnswers(question);
+
+    const optionsElements = shuffledAnswers.map((option) => {
+      const optionId = nanoid();
+      return (
+        <div key={optionId}>
+          <input type="radio" id={optionId} name={questionId} value={option} />
+          <label htmlFor={optionId}>{option}</label>
+        </div>
+      );
+    });
+    return (
+      <section className="question-wrapper" key={questionId}>
+        <h2 className="question-text">{decode(question.question)}</h2>
+        <div className="radio-button-group">{optionsElements}</div>
+      </section>
+    );
+  });
   return (
     <div className="quiz-container">
-      <section className="question-wrapper">
-        <h2 className="question-text">How would one say goodbye in Spanish?</h2>
-        <div className="radio-button-group">
-          <input type="radio" id="option1" name="choice" value="1" />
-          <label htmlFor="option1">Adiós</label>
-
-          <input type="radio" id="option2" name="choice" value="2" />
-          <label htmlFor="option2">Hola</label>
-
-          <input type="radio" id="option3" name="choice" value="3" />
-          <label htmlFor="option3">Au Revoir</label>
-
-          <input type="radio" id="option4" name="choice" value="4" />
-          <label htmlFor="option4">Salir</label>
-        </div>
-      </section>
-
-      <section className="question-wrapper">
-        <h2 className="question-text">How would one say goodbye in Spanish?</h2>
-        <div className="radio-button-group">
-          <input type="radio" id="option1" name="choice" value="1" />
-          <label htmlFor="option1">Adiós</label>
-
-          <input type="radio" id="option2" name="choice" value="2" />
-          <label htmlFor="option2">Hola</label>
-
-          <input type="radio" id="option3" name="choice" value="3" />
-          <label htmlFor="option3">Au Revoir</label>
-
-          <input type="radio" id="option4" name="choice" value="4" />
-          <label htmlFor="option4">Salir</label>
-        </div>
-      </section>
-
-      <section className="question-wrapper">
-        <h2 className="question-text">How would one say goodbye in Spanish?</h2>
-        <div className="radio-button-group">
-          <input type="radio" id="option1" name="choice" value="1" />
-          <label htmlFor="option1">Adiós</label>
-
-          <input type="radio" id="option2" name="choice" value="2" />
-          <label htmlFor="option2">Hola</label>
-
-          <input type="radio" id="option3" name="choice" value="3" />
-          <label htmlFor="option3">Au Revoir</label>
-
-          <input type="radio" id="option4" name="choice" value="4" />
-          <label htmlFor="option4">Salir</label>
-        </div>
-      </section>
-
-      <section className="question-wrapper">
-        <h2 className="question-text">How would one say goodbye in Spanish?</h2>
-        <div className="radio-button-group">
-          <input type="radio" id="option1" name="choice" value="1" />
-          <label htmlFor="option1">Adiós</label>
-
-          <input type="radio" id="option2" name="choice" value="2" />
-          <label htmlFor="option2">Hola</label>
-
-          <input type="radio" id="option3" name="choice" value="3" />
-          <label htmlFor="option3">Au Revoir</label>
-
-          <input type="radio" id="option4" name="choice" value="4" />
-          <label htmlFor="option4">Salir</label>
-        </div>
-      </section>
-
-      <section className="question-wrapper">
-        <h2 className="question-text">How would one say goodbye in Spanish?</h2>
-        <div className="radio-button-group">
-          <input type="radio" id="option1" name="choice" value="1" />
-          <label htmlFor="option1">Adiós</label>
-
-          <input type="radio" id="option2" name="choice" value="2" />
-          <label htmlFor="option2">Hola</label>
-
-          <input type="radio" id="option3" name="choice" value="3" />
-          <label htmlFor="option3">Au Revoir</label>
-
-          <input type="radio" id="option4" name="choice" value="4" />
-          <label htmlFor="option4">Salir</label>
-        </div>
-      </section>
-
+      {quizElements}
       <div className="quiz-result-container">
         {isGameOver ? (
           <>

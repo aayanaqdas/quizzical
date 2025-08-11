@@ -19,21 +19,29 @@ body {
   font-family: Karla, sans-serif;
 }
 
+
 main {
+  min-height: 100vh;
+  position: relative;
+}
+
+main .content-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  height: 100vh;
-  width: 100vw;
+  align-items: center;
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  min-height: 100vh;
 }
 
 main .shape-top {
-  position: absolute;
+  position: absolute; 
   max-width: 100%;
   top: 0;
   right: 0;
   z-index: -1;
+  pointer-events: none;
 }
 
 main .shape-bottom {
@@ -42,6 +50,7 @@ main .shape-bottom {
   bottom: 0;
   left: 0;
   z-index: -1;
+  pointer-events: none;
 }
 
 .start-page {
@@ -80,6 +89,8 @@ main .shape-bottom {
 .quiz-container {
   width: 100%;
   max-width: 700px;
+  padding: 20px;
+  margin-bottom: 110px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -156,13 +167,12 @@ input[type="radio"]:checked + label {
 .quiz-result-container button {
   color: #f5f7fb;
   background-color: var(--blue-buttons-bg);
-  width: 115px;
-  height: 35px;
-  border-radius: 10px;
+  width: 10rem;
+  height: 2.5rem;
+  border-radius: 15px;
   border: none;
   cursor: pointer;
   font-weight: 500;
   font-size: 0.8rem;
   text-align: center;
-  margin-top: 30px;
 }
