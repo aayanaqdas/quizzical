@@ -35,7 +35,7 @@ main .content-container {
 }
 
 main .shape-top {
-  position: absolute;
+  position: fixed;
   max-width: 100%;
   top: 0;
   right: 0;
@@ -44,7 +44,7 @@ main .shape-top {
 }
 
 main .shape-bottom {
-  position: absolute;
+  position: fixed;
   max-width: 100%;
   bottom: 0;
   left: 0;
@@ -53,6 +53,7 @@ main .shape-bottom {
 }
 
 .start-page {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -70,6 +71,65 @@ main .shape-bottom {
   font-size: 1rem;
 }
 
+.start-page .trivia-options-container {
+  width: 100%;
+  max-width: 360px;
+  margin-top: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  gap: 20px;
+}
+
+.trivia-options-container .trivia-option {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.trivia-option label {
+  text-align: left;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--blue-text);
+}
+
+.trivia-option select,
+.trivia-option input[type="number"] {
+  padding: 14px 16px;
+  border: none;
+  box-shadow: 0 4px 16px rgba(44, 62, 80, 0.15);
+  border-radius: 6px;
+  background-color: #fff;
+  color: var(--blue-text);
+  font-size: 1rem;
+  cursor: pointer;
+  outline: none;
+  transition: box-shadow 0.2s;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+/* Custom arrow for select */
+.trivia-option select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='gray' height='16' viewBox='0 0 20 20' width='16' xmlns='http://www.w3.org/2000/svg'><path d='M5.516 7.548a.625.625 0 0 1 .884 0L10 11.148l3.6-3.6a.625.625 0 1 1 .884.884l-4.042 4.042a.625.625 0 0 1-.884 0L5.516 8.432a.625.625 0 0 1 0-.884z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 18px 18px;
+  padding-right: 40px;
+}
+
+.trivia-option select:focus,
+.trivia-option input[type="number"]:focus {
+  box-shadow: 0 0 0 2px var(--selected-answers-bg), 0 4px 16px rgba(44, 62, 80, 0.15);
+}
+
 .start-page button {
   color: #f5f7fb;
   background-color: var(--blue-buttons-bg);
@@ -82,6 +142,7 @@ main .shape-bottom {
   font-weight: 500;
   font-size: 1rem;
   text-align: center;
+  box-shadow: 0 4px 16px rgba(44, 62, 80, 0.15);
 }
 
 /* ----- Questions page ----- */
@@ -93,6 +154,30 @@ main .shape-bottom {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.quiz-form .no-results {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: var(--blue-text);
+}
+
+.quiz-form .no-results button {
+  color: #f5f7fb;
+  background-color: var(--blue-buttons-bg);
+  width: 10rem;
+  height: 2.5rem;
+  border-radius: 15px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.8rem;
+  text-align: center;
 }
 
 .question-wrapper {
@@ -203,4 +288,9 @@ input[type="radio"]:disabled + label.correct:hover {
   font-weight: 500;
   font-size: 0.8rem;
   text-align: center;
+}
+
+.quiz-result-container button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }

@@ -3,11 +3,13 @@ import { decode } from "html-entities";
 import { nanoid } from "nanoid";
 
 export default function QuestionsPage(props) {
+  const { data, setIsStarted } = props;
   const [isGameOver, setIsGameOver] = useState(false);
   const [userAnswers, setUserAnswers] = useState({});
   const [shuffledData, setShuffledData] = useState([]);
+
   useEffect(() => {
-    const shuffled = props.data.map((question) => {
+    const shuffled = data.map((question) => {
       const answers = [...question.incorrect_answers, question.correct_answer];
       for (let i = answers.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -18,7 +20,7 @@ export default function QuestionsPage(props) {
     setShuffledData(shuffled);
     setUserAnswers({});
     setIsGameOver(false);
-  }, [props.data]);
+  }, [data]);
 
   function handleChange(event, index) {
     setUserAnswers((prev) => ({
@@ -85,26 +87,38 @@ export default function QuestionsPage(props) {
   function handleRestart() {
     setIsGameOver(false);
     setUserAnswers({});
-    props.setIsStarted(false);
+    setIsStarted(false);
   }
 
   const score = checkAnswers();
+  const allAnswered = Object.keys(userAnswers).length === shuffledData.length;
 
   return (
     <form onSubmit={handleSubmit} className="quiz-form">
-      {quizElements}
-      <div className="quiz-result-container">
-        {isGameOver ? (
-          <>
-            <h3>
-              You scored {score}/{shuffledData.length} correct answers
-            </h3>
-            <button onClick={handleRestart}>Play again</button>
-          </>
-        ) : (
-          <button type="submit">Check answers</button>
-        )}
-      </div>
+      {shuffledData.length === 0 ? (
+        <div className="no-results">
+          <p>No quiz available for selected options</p>
+          <button onClick={handleRestart}>Try again</button>
+        </div>
+      ) : (
+        <>
+          {quizElements}
+          <div className="quiz-result-container">
+            {isGameOver ? (
+              <>
+                <h3>
+                  You scored {score}/{shuffledData.length} correct answers
+                </h3>
+                <button onClick={handleRestart}>Play again</button>
+              </>
+            ) : (
+              <button type="submit" disabled={!allAnswered}>
+                Check answers
+              </button>
+            )}
+          </div>
+        </>
+      )}
     </form>
   );
 }
