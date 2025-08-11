@@ -22,6 +22,7 @@ export default function App() {
     };
     if (isStarted) {
       fetchData();
+
     }
   }, [isStarted]);
 
@@ -36,7 +37,7 @@ export default function App() {
             <button onClick={() => setIsStarted(true)}>Start quiz</button>
           </div>
         ) : (
-          <QuestionsPage data={data} />
+          <QuestionsPage data={data} setIsStarted={setIsStarted} />
         )}
       </div>
       <img src={shapeBl} alt="Shape bottom left" className="shape-bottom" />

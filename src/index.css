@@ -19,7 +19,6 @@ body {
   font-family: Karla, sans-serif;
 }
 
-
 main {
   min-height: 100vh;
   position: relative;
@@ -36,7 +35,7 @@ main .content-container {
 }
 
 main .shape-top {
-  position: absolute; 
+  position: absolute;
   max-width: 100%;
   top: 0;
   right: 0;
@@ -86,7 +85,7 @@ main .shape-bottom {
 }
 
 /* ----- Questions page ----- */
-.quiz-container {
+.quiz-form {
   width: 100%;
   max-width: 700px;
   padding: 20px;
@@ -114,14 +113,15 @@ main .shape-bottom {
 
 .radio-button-group {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
 }
 
 /* Hide the native radio input */
 input[type="radio"] {
-  -webkit-appearance: none; /* For WebKit browsers */
-  appearance: none; /* Standard property */
-  display: none; /* Hide the input visually */
+  -webkit-appearance: none;
+  appearance: none;
+  display: none;
 }
 
 /* Style the labels to look like buttons */
@@ -142,6 +142,17 @@ input[type="radio"]:checked + label {
   background-color: var(--selected-answers-bg);
   color: var(--blue-text);
   border-color: var(--selected-answers-bg);
+}
+
+input[type="radio"]:disabled + label {
+  opacity: 0.5;
+}
+
+input[type="radio"]:disabled + label:hover {
+  background-color: transparent;
+  color: inherit;
+  border-color: var(--blue-border);
+  cursor: not-allowed;
 }
 
 /* Optional: Hover effect */
