@@ -149,17 +149,34 @@ input[type="radio"]:disabled + label {
 }
 
 input[type="radio"]:disabled + label:hover {
-  background-color: transparent;
-  color: inherit;
-  border-color: var(--blue-border);
   cursor: not-allowed;
 }
 
-/* Optional: Hover effect */
 .radio-button-group label:hover {
   background-color: var(--selected-answers-bg);
   color: var(--blue-text);
   border-color: var(--selected-answers-bg);
+}
+
+input[type="radio"]:disabled + label.incorrect {
+  background-color: var(--wrong-answers-bg);
+  border-color: var(--wrong-answers-bg);
+}
+input[type="radio"]:disabled + label.incorrect:hover {
+  background-color: var(--wrong-answers-bg);
+  border-color: var(--wrong-answers-bg);
+}
+
+input[type="radio"]:disabled + label.correct {
+  opacity: 1;
+  background-color: var(--correct-answers-bg);
+  border-color: var(--correct-answers-bg);
+}
+
+input[type="radio"]:disabled + label.correct:hover {
+  opacity: 1;
+  background-color: var(--correct-answers-bg);
+  border-color: var(--correct-answers-bg);
 }
 
 .quiz-result-container {

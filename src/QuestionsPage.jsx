@@ -31,6 +31,16 @@ export default function QuestionsPage(props) {
     const optionsElements = question.shuffledAnswers.map((answer) => {
       const option = decode(answer);
       const optionId = nanoid();
+
+      let labelClass = "";
+      if (isGameOver) {
+        if (option === decode(question.correct_answer)) {
+          labelClass = "correct";
+        } else if (userAnswers[index] === option && option !== decode(question.correct_answer)) {
+          labelClass = "incorrect";
+        }
+      }
+
       return (
         <div key={optionId}>
           <input
@@ -43,7 +53,9 @@ export default function QuestionsPage(props) {
             required
             disabled={isGameOver}
           />
-          <label htmlFor={optionId}>{option}</label>
+          <label className={labelClass} htmlFor={optionId}>
+            {option}
+          </label>
         </div>
       );
     });
@@ -61,7 +73,6 @@ export default function QuestionsPage(props) {
       if (userAnswers[index] === decode(question.correct_answer)) {
         correct += 1;
       }
-      console.log(question.correct_answer);
     });
     return correct;
   }
@@ -74,7 +85,7 @@ export default function QuestionsPage(props) {
   function handleRestart() {
     setIsGameOver(false);
     setUserAnswers({});
-    props.setIsStarted((prev) => !prev);
+    props.setIsStarted(false);
   }
 
   const score = checkAnswers();

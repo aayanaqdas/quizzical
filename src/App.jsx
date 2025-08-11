@@ -21,8 +21,8 @@ export default function App() {
       }
     };
     if (isStarted) {
-      fetchData();
-
+      //fetchData();
+      setData(JSON.parse(localStorage.getItem("data")))
     }
   }, [isStarted]);
 
